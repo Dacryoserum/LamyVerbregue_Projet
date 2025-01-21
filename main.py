@@ -1,4 +1,6 @@
 import pygame
+from tetris_formes import Tetromino, SHAPES
+
 
 pygame.init()
 

@@ -1,7 +1,7 @@
 import random
 import pygame
 
-# Couleurs pour les différentes formes
+# Couleurs pour les formes
 COLORS = [
     (0, 255, 255),  # Cyan (I)
     (0, 0, 255),    # Blue (J)
@@ -12,7 +12,7 @@ COLORS = [
     (255, 0, 0),    # Red (Z)
 ]
 
-# Définition des formes (les 4 rotations pour chaque forme)
+# Définition des formes 
 SHAPES = {
     "I": [[(0, 1), (1, 1), (2, 1), (3, 1)]],
     "J": [[(0, 1), (1, 1), (2, 1), (2, 0)]],
