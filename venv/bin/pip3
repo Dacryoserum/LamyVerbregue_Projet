@@ -1,4 +1,4 @@
-#!/Users/matthieu/Documents/code/python/Tetris/venv/bin/python3.11
+#!/home/matthieu/Documents/code/python/LamyVerbregue_Projet/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
