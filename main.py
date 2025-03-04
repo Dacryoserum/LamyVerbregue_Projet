@@ -1,11 +1,14 @@
 import pygame
 import random
 import sys
-import home_screen
-from home_screen import TetrisMenu
 from sound_manager import SoundManager
 
+print("Démarrage du programme...")
+import pygame
+print("Pygame importé avec succès")
 
+
+# etc...
 # =============================================================================
 # Configuration générale du jeu
 # =============================================================================
@@ -399,7 +402,7 @@ def main():
     l'affichage de la grille, des pièces, du score, des animations et du panneau latéral.
     """
     pygame.init()
-    #SoundManager().play_music()
+    SoundManager().play_music()
     screen = pygame.display.set_mode((LARGEUR_FENETRE, HAUTEUR_FENETRE))
     pygame.display.set_caption("Tetris")
     clock = pygame.time.Clock()
@@ -452,7 +455,7 @@ def main():
                     en_animation = False
                 # Si la touche Echap est pressée après un Game Over, renvoie sur le home_screen
                 if event.key == pygame.K_ESCAPE:
-                        #SoundManager().stop_music()
+                        SoundManager().stop_music()
                         pygame.quit()
                         import home_screen
                         menu = home_screen.TetrisMenu()
