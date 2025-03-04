@@ -500,6 +500,7 @@ def main():
                     else:
                         # La pièce ne peut plus descendre et est verrouillée sur le plateau
                         plateau.lock_piece(piece_actuelle)
+                        SoundManager().play_sound('piece_drop')
                         # Vérifie la présence de lignes complètes
                         lignes_completes = plateau.get_lignes_completes()
                         if lignes_completes:
@@ -507,6 +508,7 @@ def main():
                             en_animation = True
                             lignes_animation = lignes_completes
                             timer_animation = DUREE_ANIMATION_LIGNE
+                            SoundManager().play_sound('line_clear')
                         else:
                             # Passe à la pièce suivante
                             piece_actuelle = piece_suivante
