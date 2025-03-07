@@ -46,9 +46,9 @@ class TetrisMenu:
                 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if start_button.collidepoint(event.pos):
+                        pygame.display.quit()
                         # Direct import and execution of main game
                         import main
-                        pygame.quit()
                         main.main()
                         sys.exit()
                     

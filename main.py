@@ -1,6 +1,14 @@
 import pygame
 import random
+import sys
+from sound_manager import SoundManager
 
+print("Démarrage du programme...")
+import pygame
+print("Pygame importé avec succès")
+
+
+# etc...
 # =============================================================================
 # Configuration générale du jeu
 # =============================================================================
@@ -351,6 +359,7 @@ def draw_controls(surface):
         "Flèche bas : Descente douce",
         "Espace : Descente rapide",
         "P : Pause",
+        "Echap : Retour au menu",
         "R : Redémarrer (Game Over)"
     ]
     x = LARGEUR_JEU + 10
@@ -393,6 +402,7 @@ def main():
     l'affichage de la grille, des pièces, du score, des animations et du panneau latéral.
     """
     pygame.init()
+    SoundManager().play_music()
     screen = pygame.display.set_mode((LARGEUR_FENETRE, HAUTEUR_FENETRE))
     pygame.display.set_caption("Tetris")
     clock = pygame.time.Clock()
@@ -411,6 +421,7 @@ def main():
     en_animation = False              # Indique si l'animation est en cours
     lignes_animation = []             # Liste des indices de lignes à animer
     timer_animation = 0               # Timer pour l'animation d'effacement
+    
 
     running = True
     while running:
@@ -426,6 +437,7 @@ def main():
         # =============================================================================
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                SoundManager().stop_music()
                 running = False
 
             # Gestion des événements clavier
@@ -441,6 +453,14 @@ def main():
                     fall_time = 0
                     pause = False
                     en_animation = False
+                # Si la touche Echap est pressée après un Game Over, renvoie sur le home_screen
+                if event.key == pygame.K_ESCAPE:
+                        SoundManager().stop_music()
+                        pygame.quit()
+                        import home_screen
+                        menu = home_screen.TetrisMenu()
+                        menu.run()
+                        sys.exit()
                 # Bascule le mode pause avec la touche P (si le jeu n'est pas en animation)
                 if event.key == pygame.K_p and not game_over and not en_animation:
                     pause = not pause
@@ -480,6 +500,7 @@ def main():
                     else:
                         # La pièce ne peut plus descendre et est verrouillée sur le plateau
                         plateau.lock_piece(piece_actuelle)
+                        SoundManager().play_sound('piece_drop')
                         # Vérifie la présence de lignes complètes
                         lignes_completes = plateau.get_lignes_completes()
                         if lignes_completes:
@@ -487,6 +508,7 @@ def main():
                             en_animation = True
                             lignes_animation = lignes_completes
                             timer_animation = DUREE_ANIMATION_LIGNE
+                            SoundManager().play_sound('line_clear')
                         else:
                             # Passe à la pièce suivante
                             piece_actuelle = piece_suivante
