@@ -1,0 +1,13 @@
+pygame==2.5.2
+pytest==7.4.0
+pytest-mock==3.11.1
+
+
+# Créer l'environnement virtuel
+#python3 -m venv tetris_env
+
+# Activer l'environnement virtuel
+#source tetris_env/bin/activate
+
+# Installer les dépendances
+#pip install -r requirements.txt
